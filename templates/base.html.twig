@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+
+    <head>
+
+        <meta charset="UTF-8"> 
+        <meta name="description" content="Job  dahshboard">
+        {#        <meta name="keywords" content="HTML,CSS,AngularJS,Angular,Angular 2,Angular 4,Angular 5,Angular 6,Angular 7,Material,Material 2">#}
+        <meta name="author" content="smarteo">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="icon" type="image/x-icon" href="{{asset('assets/images/logos/job.jpg')}}">
+        <title>{% block title %}Job Dashboard{% endblock %}</title>
+
+        {% block stylesheets %}
+            <!-- STYLESHEETS -->
+            <style type="text/css">
+                [fuse-cloak],
+                .fuse-cloak {
+                    display: none !important;
+                }
+            </style>
+
+            <!-- Icons.css -->
+            <link type="text/css" rel="stylesheet" href="{{ asset('assets/icons/fuse-icon-font/style.css')}}">
+
+            <!-- Animate.css -->
+            <link type="text/css" rel="stylesheet" href="{{ asset('assets/vendor/animate.css/animate.min.css')}}">
+
+            <!-- PNotify -->
+            <link type="text/css" rel="stylesheet" href="{{ asset('assets/vendor/pnotify/pnotify.custom.min.css')}}">
+
+            <!-- Nvd3 - D3 Charts -->
+            <link type="text/css" rel="stylesheet" href="{{ asset('assets/vendor/nvd3/build/nv.d3.min.css')}}"/>
+
+            <!-- Perfect Scrollbar -->
+            <link type="text/css" rel="stylesheet" href="{{ asset('assets/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css')}}"/>
+
+            <!-- Fuse Html -->
+            <link type="text/css" rel="stylesheet" href="{{ asset('assets/vendor/fuse-html/fuse-html.min.css')}}"/>
+
+            <!-- Main CSS -->
+            <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/main.css')}}">
+
+            <!-- Custum CSS -->
+            <link type="text/css" rel="stylesheet" href="{{ asset('my/css/custom.css')}}">
+            <!-- / STYLESHEETS -->
+        {% endblock stylesheets %}
+        <!-- JAVASCRIPT -->
+
+        {% block javascripts %}
+            <!-- jQuery -->
+            <script type="text/javascript" src="{{ asset('assets/vendor/jquery/dist/jquery.min.js')}}"></script>
+
+            <!-- Mobile Detect -->
+            <script type="text/javascript" src="{{ asset('assets/vendor/mobile-detect/mobile-detect.min.js')}}"></script>
+
+            <!-- Perfect Scrollbar -->
+            <script type="text/javascript"
+            src="{{  asset('assets/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js')}}"></script>
+
+            <!-- Popper.js -->
+            <script type="text/javascript" src="{{ asset('assets/vendor/popper.js/index.js')}}"></script>
+
+            <!-- Bootstrap -->
+            <script type="text/javascript" src="{{ asset('assets/vendor/bootstrap/bootstrap.min.js')}}"></script>
+
+            <!-- Nvd3 - D3 Charts -->
+            <script type="text/javascript" src="{{ asset('assets/vendor/d3/d3.min.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('assets/vendor/nvd3/build/nv.d3.min.js')}}"></script>
+
+            <!-- Data tables -->
+            {#            <script type="text/javascript" src="{{  asset('assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>#}
+
+            {#            <script type="text/javascript" src="{{  asset('assets/vendor/datatables-responsive/js/dataTables.responsive.js"></script>#}
+
+            <!-- PNotify -->
+            <script type="text/javascript" src="{{ asset('assets/vendor/pnotify/pnotify.custom.min.js')}}"></script>
+
+            <!-- Fuse Html -->
+            <script type="text/javascript" src="{{ asset('assets/vendor/fuse-html/fuse-html.min.js')}}"></script>
+
+            <!-- Main JS -->
+            <script type="text/javascript" src="{{ asset('assets/js/main.js')}}"></script>
+
+           {#  <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script> #}
+            <script>
+
+                $(document).ready(function () {
+                {# console.log('jqXHR.status');#}
+                        $(document).ajaxError(function (event, jqXHR) {
+                            console.log(jqXHR.status);
+                            if (401 === jqXHR.status) {
+                {#                    window.location.reload();#}
+                            }
+                        });
+                    });
+            </script>
+            <script src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
+           {#<script src="{{ url('bazinga_jstranslation_js') }}"></script>#}
+        {% endblock javascripts %}
+
+        <!-- / JAVASCRIPT -->
+    </head>
+
+    <body class="layout layout-vertical layout-left-navigation layout-below-toolbar">
+
+
+        <div id="wrapper">
+
+
+            {% include 'left.html.twig' %}
+
+            <div class="content-wrapper">
+
+
+                <nav id="toolbar" class="fixed-top bg-white">
+
+                    <div class="row no-gutters align-items-center flex-nowrap">
+
+                        <div class="col">
+
+                            <div class="row no-gutters align-items-center flex-nowrap">
+
+                                <button type="button" class="toggle-aside-button btn btn-icon d-block d-lg-none"
+                                        data-fuse-bar-toggle="aside">
+                                    <i class="icon icon-menu"></i>
+                                </button>
+
+                                <div class="toolbar-separator d-block d-lg-none"></div>
+
+
+                                <div class="toolbar-separator"></div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-auto">
+
+                            <div class="row no-gutters align-items-center justify-content-end">
+
+                                <div class="user-menu-button dropdown">
+
+                                    <div class="dropdown-toggle ripple row align-items-center no-gutters px-2 px-sm-4" role="button"
+                                         id="dropdownUserMenu"
+                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div class="avatar-wrapper">
+                                            <img class="avatar" src="../assets/images/avatars/profile.jpg">
+                                            <i class="status text-green icon-checkbox-marked-circle s-4"></i>
+                                        </div>
+                                        <span class="username mx-3 d-none d-md-block"></span>
+                                    </div>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownUserMenu">
+
+                                        <a class="dropdown-item" href="#">
+                                            <div class="row no-gutters align-items-center flex-nowrap">
+                                                <i class="icon-account"></i>
+                                                <span class="px-3">{{ 'my_profile'|trans }}</span>
+                                            </div>
+                                        </a>
+
+                                        {#<a class="dropdown-item" href="#">
+                                            <div class="row no-gutters align-items-center flex-nowrap">
+                                                <i class="icon-email"></i>
+                                                <span class="px-3">Inbox</span>
+                                            </div>
+                                        </a>#}
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <a class="dropdown-item" href="{{ path('app_login') }}">
+                                            <div class="row no-gutters align-items-center flex-nowrap">
+                                                <i class="icon-logout"></i>
+                                                <span class="px-3">{{ 'Logout'|trans }}</span>
+                                            </div>
+                                        </a>
+
+                                    </div>
+                                </div>
+
+                                <div class="toolbar-separator"></div>
+
+                                <div class="language-button dropdown">
+
+                                    {%  set locale = app.request.locale ? app.request.locale : 'fr' %}
+                                    <div
+                                        class="dropdown-toggle ripple row align-items-center justify-content-center no-gutters px-0 px-sm-4"
+                                        role="button"
+                                        id="dropdownLanguageMenu"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div class="row no-gutters align-items-center">
+                                            <img class="flag mr-2" width="32" 
+                                                 src="../assets/images/flags/{{ locale }}.png">
+                                            {#                                            <span class="d-none d-md-block">FR</span>#}
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownLanguageMenu">
+
+                                        <a class="dropdown-item" href="{{ path('job',{'locale': 'en' }) }}">
+                                            <div class="row no-gutters align-items-center flex-nowrap">
+                                                <img class="flag" width="16"
+                                                     src="../assets/images/flags/en.png">
+                                                <span class="px-3">English</span>
+                                            </div>
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ path('job',{'locale': 'fr' }) }}">
+                                            <div class="row no-gutters align-items-center flex-nowrap">
+                                                <img class="flag" width="16" src="../assets/images/flags/fr.png">
+                                                <span class="px-3">Français</span>
+                                            </div>
+                                        </a>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="content">
+
+                    <div id="loading" style="display: none;">
+                        <img id="loading-image" width="150" src="{{ asset('my/images/gif-fond-blanc.gif')}}" alt="Loading..." />
+                    </div>
+
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+

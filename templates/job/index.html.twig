@@ -1,0 +1,154 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock stylesheets %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="../assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="../assets/vendor/datatables-responsive/js/dataTables.responsive.js"></script>
+
+{% endblock javascripts %}
+
+{% block body %}
+<div
+	class="doc data-table-doc page-layout simple full-width">
+
+	<!-- HEADER -->
+	<div class="page-header bg-secondary text-auto p-6">
+		<h2 class="doc-title" id="content">{{ 'Nos Offres'|trans }}</h2>
+	</div>
+	<div>
+		<button type="button" class=" pull-right btn btn-danger mb-4" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Ajouter Offre
+		</button>
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="modal">
+				<div class="modal-content">
+
+
+					<div class="modal-header">
+						<h3 class="modal-title" id="exampleModalLabel">Ajouter Offre</h3>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<h1>Job creation</h1>
+
+						<div class="row">
+							{{ form_start(form, {
+                    'attr': {
+                        'novalidate': 'novalidate',
+                        'class': 'col-lg-5' 
+                        }
+                    })
+                }}
+
+							{{ form_widget(form) }}
+
+
+							<button type="submit" class="btn btn-primary">Créer</button>
+							{{ form_end(form) }}
+						</div>
+					</div>
+
+					{#{{ form_end(form) }}#}
+					
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-- / HEADER -->
+
+	<!-- CONTENT -->
+	<div class="page-content row p-6 container">
+
+		<div class="col-12">
+
+			<div class="example">
+				<div class="description">
+					<div class="description-text">
+						<h3>Les postes</h3>
+					</div>
+					<div class="toggle-source-preview">
+						<i class="icon icon-code-tags"></i>
+						<i class="icon icon-eye-outline"></i>
+					</div>
+				</div>
+				<div class="source-preview-wrapper">
+					<div class="preview">
+						<div class="preview-elements">
+							{%  if data|length > 0 %}
+
+								<table id="sample-data-table" class="table">
+									<thead>
+										<tr>
+											<th class="secondary-text">
+												<div class="table-header">
+													<span class="column-title">Type</span>
+												</div>
+											</th>
+											<th class="secondary-text">
+												<div class="table-header">
+													<span class="column-title">Company</span>
+												</div>
+											</th>
+											<th class="secondary-text">
+												<div class="table-header">
+													<span class="column-title">Position</span>
+												</div>
+											</th>
+											<th class="secondary-text">
+												<div class="table-header">
+													<span class="column-title">HowtoAplly</span>
+												</div>
+											</th>
+											<th class="secondary-text">
+												<div class="table-header">
+													<span class="column-title">Action</span>
+												</div>
+											</th>
+
+										</tr>
+									</thead>
+									<tbody>
+										{% for job in data %}
+
+											<tr>
+												<td>{{job.type}}</td>
+												<td>{{job.company}}</td>
+												<td>{{job.position}}</td>
+												<td>{{job.howToApply}}</td>
+												<td>
+													{# href="{{ path('edit' )}}"#}
+													<button>
+														<a href="{{ path('list') }}" class="btn btn-info">Details</a>
+													</button>
+                                                 
+													<button>
+														<a href="{{ path('job.edit',{id:job.id}) }}" class="btn btn-primary">Modifier</a>
+													</button>
+													
+												</td>
+											</tr>
+										</div>
+									</tbody>
+								</div>
+
+
+							</td>
+						</tr>
+						{# href="{{ path('delete' )}}"#}
+					</tbody>
+				</tbody>
+			</td>
+		</tr>
+	{% endfor %}
+
+
+</tbody></table><script type="text/javascript">
+$('#sample-data-table').DataTable({responsive: true});</script>{% endif %}</div></div>{% endblock %}

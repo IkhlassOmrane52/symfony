@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+
+	<head>
+
+		<meta charset="UTF-8">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="icon" type="image/x-icon" href="{{ asset('my/images/favicon.ico')}}">
+		<title>JOB Dashboard</title>
+
+		<!-- STYLESHEETS -->
+		<style>
+			type="text/css" [fuse-cloak],
+			.fuse-cloak {
+				display: none !important;
+			}
+		</style>
+
+		<!-- Icons.css -->
+		<link
+		type="text/css" rel="stylesheet" href="{{ asset('assets/icons/fuse-icon-font/style.css') }}">
+
+		<!-- Animate.css -->
+		<link
+		type="text/css" rel="stylesheet" href="{{ asset('assets/vendor/animate.css/animate.min.css') }}">
+
+		<!-- PNotify -->
+		<link
+		type="text/css" rel="stylesheet" href="{{ asset('assets/vendor/pnotify/pnotify.custom.min.css') }}">
+
+		<!-- Fuse Html -->
+		<link
+		type="text/css" rel="stylesheet" href="{{ asset('assets/vendor/fuse-html/fuse-html.min.css') }}"/>
+
+		<!-- Main CSS -->
+		<link type="text/css" rel="stylesheet" href="{{ asset('assets/css/main.css') }}"><!-- / STYLESHEETS -->
+		<!-- JAVASCRIPT -->
+
+		<!-- jQuery --><script type="text/javascript" src="../assets/vendor/jquery/dist/jquery.min.js"> </script>
+
+		<!-- Mobile Detect -->
+		<script type="text/javascript" src="../assets/vendor/mobile-detect/mobile-detect.min.js"></script>
+
+		<!-- Perfect Scrollbar -->
+		<script type="text/javascript" src="../assets/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+
+		<!-- Popper.js -->
+		{#        <script type="text/javascript" src="../assets/vendor/popper.js/index.js"></script>#}
+
+		<!-- Bootstrap -->
+		{#        <script type="text/javascript" src="../assets/vendor/bootstrap/bootstrap.min.js"></script>#}
+
+		<!-- PNotify -->
+		{#        <script type="text/javascript" src="../assets/vendor/pnotify/pnotify.custom.min.js"></script>#}
+
+		<!-- Fuse Html --><script type="text/javascript" src="../assets/vendor/fuse-html/fuse-html.min.js"> </script>
+
+		<!-- Main JS -->
+	{#        <script type="text/javascript" src="../assets/js/main.js"></script>#}
+
+		<!-- / JAVASCRIPT -->
+
+	</head>
+	<body class="layout layout-vertical layout-left-navigation layout-below-toolbar">
+
+		<div class="content-wrapper">
+
+			<div class="content">
+				<div id="login" class="p-8">
+
+					<div class="form-wrapper md-elevation-8 p-8">
+
+							<img href="{{asset('assets/images/logos/job.jpg')}}" width="150" class="">
+
+							<div class="title mt-4 mb-8">{{ 'Log in to your account'|trans }}</div>
+							<form method="post">
+								{% if error %}
+									<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+								{% endif %}
+
+								{% if app.user %}
+									<div class="mb-3">
+										You are logged in as
+										{{ app.user.username }},
+										<a href="{{ path('app_logout') }}">Logout</a>
+									</div>
+								{% endif %}
+
+								<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+								<label for="inputEmail">Email</label>
+								<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+								<label for="inputPassword">Password</label>
+								<input type="password" name="password" id="inputPassword" class="form-control" required>
+
+								<input
+								type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+								
+
+								<button class="btn btn-lg btn-primary" type="submit">
+									Sign in
+								</button>
+							</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>

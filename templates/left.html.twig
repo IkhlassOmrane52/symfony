@@ -1,0 +1,62 @@
+
+<aside id="aside" class="aside aside-left"
+       data-fuse-bar="aside" data-fuse-bar-media-step="md"
+       data-fuse-bar-position="left">
+    <div class="aside-content-wrapper">
+
+        <div class="aside-content bg-primary-500 text-auto">
+
+            <div class="aside-toolbar">
+
+                <div class="logo">
+                    <img src="{{asset('assets/images/logos/job.jpg')}}" width="80" style="margin-left: -15%;"><span class="logo-text">JOB</span>
+                </div>
+
+                <button id="toggle-fold-aside-button" type="button" class="btn btn-icon d-none d-lg-block"
+                        data-fuse-aside-toggle-fold>
+                    <i class="icon icon-backburger"></i>
+                </button>
+
+            </div>
+
+            <ul class="nav flex-column custom-scrollbar" id="sidenav" data-children=".nav-item">
+                {% set currentPath = app.request.get('_route') %}
+                <li class="subheader">
+                    <span>{{ 'Job dashboard'|trans }}</span>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link ripple {{ currentPath == '/job/{id}/edit' ? 'active' : ''}} " 
+                       href="{{ path('job') }}"
+                       data-page-url="{{ path('job') }}">
+                        <i class="icon s-4 icon-tile-four"></i>
+                        <span>{{ 'dashboard'|trans }}</span>
+                    </a>
+                </li>
+
+
+{#                {% if is_granted('ROLE_MASTER')%}#}
+                    <li class="nav-item">
+                        <a class="nav-link ripple {{ currentPath == 'list' ? 'active' : ''}} " 
+                           href="{{ path('list') }}"
+                           data-page-url="{{ path('list') }}">
+                            <i class="icon s-4 icon-account-box"></i>
+                            <span>{{ 'Details'|trans }}</span>
+                        </a>
+                    </li>
+{#                {% endif %}#}
+
+                <li class="nav-item">
+                    <a class="nav-link ripple {{ currentPath == 'job' ? 'active' : ''}} " 
+                       href="{{ path('job') }}"
+                       data-page-url="{{ path('job') }}">
+                        <i class="icon s-4 icon-oil"></i>
+                        <span>{{ 'Nos  offres'|trans }}</span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+</aside>
